@@ -7,14 +7,16 @@ import { Provider,connect } from "react-redux"
 import * as ruduece from './Libary'
 import thunkMiddleware from 'redux-thunk'
 import {createStore,combineReducers,applyMiddleware} from "redux"
-  
-console.log(ruduece.default);
+import initializeStore from './routes'
+
+console.log(initializeStore(),'initializeStore');
+// console.log(ruduece.default);
  const logger = (store)=> (next) => (action) => 
     {
-        console.log('will dispatch', action)
-        console.log(store);
-        console.log(store.getState());
-        console.log(next);
+        // console.log('will dispatch', action)
+        // console.log(store);
+        // console.log(store.getState());
+        // console.log(next);
         next(action)
     }
 const store = createStore(
@@ -22,6 +24,7 @@ const store = createStore(
     {},
     applyMiddleware(logger,thunkMiddleware)
   );
+//   console.log(store,'STORE');
 ReactDOM.render(
     <Provider store={store} >
         <App />
